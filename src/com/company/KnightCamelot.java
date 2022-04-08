@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class KnightCamelot {
 
     public int health;
@@ -8,20 +10,23 @@ public class KnightCamelot {
     public int money;
 
 
-    public KnightCamelot(int health, int energy, int power, int money) {
+    public KnightCamelot(int health, int energy, double power, int money) {
 
         this.health = health;
         this.energy = energy;
         this.power = power;
         this.money = money;
+
     }
+
 
     @Override
     public String toString() {
-        return "\nЗдоровье:" + health
+        return  "\nЗдоровье:" + health
                 + "\nЭнергия:" + energy
                 + "\nСила:" + power
                 + " \nДеньги:" + money;
 
     }
+
 }
