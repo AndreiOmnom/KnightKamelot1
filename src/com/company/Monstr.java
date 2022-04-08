@@ -17,7 +17,7 @@ public class Monstr {
     @Override
     public String toString() {
         return "Имя монстра" + mname +
-                "\nЭнергия " + menergy +
+                "\nСила " + menergy +
                 " \nНаграда за победу " +priz;
 
 
