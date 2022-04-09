@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Hospital {
     public int energy;
     public int force;

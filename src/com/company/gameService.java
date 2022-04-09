@@ -22,21 +22,7 @@
 ////        return " Добавит силы:  " + force + ", Добавит энергии: " + energy + ", Его стоимость: " + price;
 ////
 ////    }
-//
-//
-//    public hospit(int hospital, int energy, int force, int price) {
-//
-//        this.hospital = hospital;
-//        this.energy = energy;
-//        this.force = force;
-//        this.price = price;
-//    }
-//
-//
-//    @Override
-//    public String toString() {
-//        return "Подлечит :" + hospital + "Заберет энергию" + energy + "Даст силу" + force + "стоимость лечения" + price;
-//    }
+
 //}
 //
 //

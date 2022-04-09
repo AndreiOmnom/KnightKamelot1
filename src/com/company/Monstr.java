@@ -1,5 +1,8 @@
 package com.company;
 
+import java.util.Scanner;
+
+
 public class Monstr {
     public String mname;
     public Double  menergy;

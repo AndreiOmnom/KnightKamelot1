@@ -31,6 +31,24 @@ public class Game {
     Hospital hand = new Hospital(20,30,-10,10);
     Hospital neck = new Hospital(40,40,-30, 20);
     Hospital head = new Hospital(60,30,-40,40);
+    {   leg.hospital = 20;
+        leg.energy = 40;
+        leg.force = -20;
+        leg.price = 15;
+         hand.hospital = 20;
+        hand.energy = 30;
+         hand.force = -10;
+        hand.price = 10;
+        neck.hospital = 40;
+        neck.energy = 40;
+        neck.force = -30;
+        neck.price = -20;
+        head.hospital = 60;
+        head.energy = 30;
+        head.force = -40;
+        head.price = 40;
+    }
+
 
     public Game() {
         System.out.println("Игра KnightCamelot запущена ");
@@ -92,6 +110,54 @@ public class Game {
                     "\n 2  - Руку " + hand+
                     "\n 3  - Спину " + neck+
                     "\n 4  - Голову"+ head);
+            viborHospital();
+
+        }
+        public void  viborHospital(){
+            int viborHospit = consol.nextInt();
+            if (viborHospit== 1) {
+                 camelot.health += leg.hospital ;
+                 camelot.energy += leg.energy;
+                 camelot.power -= leg.force;
+                 camelot.money -= leg.price;
+                System.out.println(leg);
+                System.out.println("Вы подлечились");
+                System.out.println(camelot);
+            }
+            if (viborHospit == 2) {
+                System.out.println(hand);
+                camelot.health += hand.hospital ;
+                camelot.energy += hand.energy;
+                camelot.power -= hand.force;
+                camelot.money -= hand.price;
+                System.out.println(hand);
+                System.out.println("Вы подлечились");
+                System.out.println(camelot);
+
+
+            }
+            if (viborHospit == 3) {
+                System.out.println(neck);
+                camelot.health += neck.hospital ;
+                camelot.energy += neck.energy;
+                camelot.power -= neck.force;
+                camelot.money -= neck.price;
+
+                System.out.println(neck);
+                System.out.println("Вы подлечились");
+                System.out.println(camelot);
+
+            }
+            if (viborHospit == 4) {
+                System.out.println(head);
+                camelot.health += head.hospital ;
+                camelot.energy += head.energy;
+                camelot.power -= head.force;
+                camelot.money -= head.price;
+                System.out.println(head);
+                System.out.println("Вы подлечились");
+                System.out.println(camelot);
+            }
 
         }
 
