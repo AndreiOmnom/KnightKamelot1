@@ -1,261 +1,248 @@
 package com.company;
 
-import javax.xml.namespace.QName;
 import java.security.SecureRandom;
 import java.util.Scanner;
+
+
 
 public class Game {
     Scanner consol = new Scanner(System.in);
     SecureRandom random = new SecureRandom();
 
     // поле рыцарь
-    KnightCamelot camelot = new KnightCamelot(100, 100, 2.0, 50);
+    private Hero camelot = new Hero(100, 100, 2, 50);
 
-    {
 
-        camelot.health = 100;
-        camelot.energy = 100;
-        camelot.power = 2;
-        camelot.money = 50;
-
-    }
     // поле монстр
 
-    Monstr light = new Monstr("--Легкий монстр", random.nextInt(11) / 10 + 1, 5);
-    Monstr middle = new Monstr("--Средний монстр", random.nextInt(21) / 10 + 2, 10);
-    Monstr hard = new Monstr("--Тяжелый монстр", random.nextInt(31) / 10 + 1, 20);
-    Monstr boss = new Monstr("--Босс монстр", random.nextInt(41) / 10 + 1, 35);
+    private Monstr light = new Monstr("--Легкий монстр", random.nextInt(11) / 10 + 1, 5);
+    private Monstr middle = new Monstr("--Средний монстр", random.nextInt(21) / 10 + 2, 10);
+    private Monstr hard = new Monstr("--Тяжелый монстр", random.nextInt(31) / 10 + 1, 20);
+    private Monstr boss = new Monstr("--Босс монстр", random.nextInt(41) / 10 + 1, 35);
 
     // поле лечение
-    Hospital leg = new Hospital(20,40,-20,15);
-    Hospital hand = new Hospital(20,30,-10,10);
-    Hospital neck = new Hospital(40,40,-30, 20);
-    Hospital head = new Hospital(60,30,-40,40);
-    {   leg.hospital = 20;
-        leg.energy = 40;
-        leg.force = -20;
-        leg.price = 15;
-         hand.hospital = 20;
-        hand.energy = 30;
-         hand.force = -10;
-        hand.price = 10;
-        neck.hospital = 40;
-        neck.energy = 40;
-        neck.force = -30;
-        neck.price = -20;
-        head.hospital = 60;
-        head.energy = 30;
-        head.force = -40;
-        head.price = 40;
-    }
+     Hospital leg = new Hospital();
+      Hospital hand = new Hospital(20, 30, -10, 10);
+      Hospital neck = new Hospital(40, 40, -30, 20);
+    Hospital head = new Hospital(60, 30, -40, 40);
 
 
     public Game() {
         System.out.println("Игра KnightCamelot запущена ");
         namehero();
-        while (camelot.health > 0 && camelot.energy > 0) {
+        while (camelot.getHealth() > 0 && camelot.getEnergy()  > 0) {
             menuGame();
             fightMonster();
 
         }
     }
 
-        public void playGame () {
-        }
-         public void namehero () {
+    public void playGame() {
+    }
+
+    public void namehero() {
         System.out.println("Введите имя героя");
         String name = consol.nextLine();
         System.out.println(name + "-привет");
     }
-        public void menuGame () {
-            System.out.println("\nМеню:  " +
-                    "\n 1 - Битвa " +
-                    "\n 2 - Шоппинг" +
-                    "\n 3 - Лечение");
-            viborMenu();
+
+    public void menuGame() {
+        System.out.println("\nМеню:  " +
+                "\n 1 - Битвa " +
+                "\n 2 - Шоппинг" +
+                "\n 3 - Лечение");
+        viborMenu();
+
+    }
+
+    public void fightMonster() {
+
+        System.out.println("Выберите сложность монстра:" +
+                " \n 1 - Легкий(1-10) " +
+                "\n 2  - Средний(11-20) " +
+                "\n 3  - Тяжелый(21-40) " +
+                "\n 4  - БОСС(41-50)");
+        viborMonstr();
+    }
+
+
+    public void viborMenu() {
+        int viborMenu = consol.nextInt();
+        if (viborMenu == 1) {
+            fightMonster();
 
         }
-
-        public void fightMonster () {
-
-            System.out.println("Выберите сложность монстра:" +
-                    " \n 1 - Легкий(1-10) " +
-                    "\n 2  - Средний(11-20) " +
-                    "\n 3  - Тяжелый(21-40) " +
-                    "\n 4  - БОСС(41-50)");
-            viborMonstr();
+        if (viborMenu == 2) {
+            shopping();
         }
-
-
-
-        public void viborMenu () {
-            int viborMenu = consol.nextInt();
-            if (viborMenu == 1) {
-                fightMonster();
-
-            }
-            if (viborMenu == 2) {
-                shopping();
-            }
-            if (viborMenu == 3) {
-                hospital();
-            }
+        if (viborMenu == 3) {
+            hospital();
         }
-        public void shopping () {
+    }
 
-        }
-        public void hospital () {
-            System.out.println("Что будем лечить" +
-                    " \n 1 - Ногу " + leg+
-                    "\n 2  - Руку " + hand+
-                    "\n 3  - Спину " + neck+
-                    "\n 4  - Голову"+ head);
-            viborHospital();
+    public void shopping() {
 
-        }
-        public void  viborHospital(){
-            int viborHospit = consol.nextInt();
-            if (viborHospit== 1) {
-                 camelot.health += leg.hospital ;
-                 camelot.energy += leg.energy;
-                 camelot.power -= leg.force;
-                 camelot.money -= leg.price;
-                System.out.println(leg);
-                System.out.println("Вы подлечились");
-                System.out.println(camelot);
-            }
-            if (viborHospit == 2) {
-                System.out.println(hand);
-                camelot.health += hand.hospital ;
-                camelot.energy += hand.energy;
-                camelot.power -= hand.force;
-                camelot.money -= hand.price;
-                System.out.println(hand);
-                System.out.println("Вы подлечились");
-                System.out.println(camelot);
+    }
 
+    public void hospital() {
+        System.out.println("Что будем лечить" +
+                " \n 1 - Ногу " + leg +
+                "\n 2  - Руку " + hand +
+                "\n 3  - Спину " + neck +
+                "\n 4  - Голову" + head);
+        viborHospital();
 
-            }
-            if (viborHospit == 3) {
-                System.out.println(neck);
-                camelot.health += neck.hospital ;
-                camelot.energy += neck.energy;
-                camelot.power -= neck.force;
-                camelot.money -= neck.price;
+    }
 
-                System.out.println(neck);
-                System.out.println("Вы подлечились");
-                System.out.println(camelot);
+    public void viborHospital() {
+        int viborHospit = consol.nextInt();
+        if (viborHospit == 1) {
+            camelot.setHealth(camelot.getHealth() + leg.getHospital());
+            camelot.setEnergy(camelot.getEnergy() + leg.getEnergy());
+            camelot.setPower(camelot.getPower() + leg.getForce());
+            camelot.setMoney(camelot.getMoney() - leg.getPrice());
 
-            }
-            if (viborHospit == 4) {
-                System.out.println(head);
-                camelot.health += head.hospital ;
-                camelot.energy += head.energy;
-                camelot.power -= head.force;
-                camelot.money -= head.price;
-                System.out.println(head);
-                System.out.println("Вы подлечились");
-                System.out.println(camelot);
-            }
-
-        }
-
-        public void viborMonstr () {
-            int viborMonstr = consol.nextInt();
-            if (viborMonstr == 1) {
-                System.out.println(light);
-                fightEasyMonster();
-            }
-            if (viborMonstr == 2) {
-                System.out.println(middle);
-                fightmiddleMonster();
-            }
-            if (viborMonstr == 3) {
-                System.out.println(hard);
-                fighthardMonster();
-            }
-            if (viborMonstr == 4) {
-                System.out.println(boss);
-                fightBossMonster();
-            }
-        }
-
-
-        public void fightEasyMonster () {
-            camelot.energy -= light.menergy;
-            if (camelot.power > light.menergy) {
-                System.out.println("Вы победили!");
-                camelot.money += light.priz;
-                System.out.println(camelot);
-                System.out.println("Вы заработали " + light.priz);
-
-            } else {
-                System.out.println("Вы проиграли!");
-                System.out.println("Cила монстра против которого вы сражались была : " + light.menergy);
-                camelot.health -= light.menergy;
-                System.out.println(camelot);
-                System.out.println("Ваше здоровье уменьшилось до " + camelot.health);
-            }
-
-        }
-
-        public void fightmiddleMonster () {
-            camelot.energy -= middle.menergy;
-            if (camelot.power > middle.menergy) {
-                System.out.println("Вы победили!");
-                camelot.money += middle.priz;
-                System.out.println(camelot);
-                System.out.println("Вы заработали " + middle.priz);
-
-
-            } else {
-                System.out.println("Вы проиграли!");
-                System.out.println("Cила монстра против которого вы сражались была : " + middle.menergy);
-                camelot.health -= middle.menergy;
-                System.out.println(camelot);
-                System.out.println("Ваше здоровье уменьшилось до " + camelot.health);
-            }
-
-        }
-
-        public void fighthardMonster () {
-            camelot.energy -= hard.menergy;
-            if (camelot.power > hard.menergy) {
-                System.out.println("Вы победили!");
-                camelot.money += hard.priz;
-                System.out.println(camelot);
-                System.out.println("Вы заработали " + hard.priz);
-
-
-            } else {
-                System.out.println("Вы проиграли!");
-                System.out.println("Cила монстра против которого вы сражались была : " + hard.menergy);
-                camelot.health -= hard.menergy;
-                System.out.println(camelot);
-                System.out.println("Ваше здоровье уменьшилось до " + camelot.health);
-
-            }
-        }
-        public void fightBossMonster () {
-            camelot.energy -= boss.menergy;
-            if (camelot.power > boss.menergy) {
-                System.out.println("Вы победили!");
-                camelot.money += boss.priz;
-                System.out.println(camelot);
-                System.out.println("Вы заработали " + boss.priz);
-
-
-            } else
-                System.out.println("Вы проиграли!");
-            System.out.println("Cила монстра против которого вы сражались была : " + boss.menergy);
-            camelot.health -= boss.menergy;
+            System.out.println(leg);
+            System.out.println("Вы подлечились");
             System.out.println(camelot);
-            System.out.println("Ваше здоровье уменьшилось до " + camelot.health);
+        }
+        if (viborHospit == 2) {
+            System.out.println(hand);
+            camelot.setHealth(camelot.getHealth() + hand.getHospital());
+            camelot.setEnergy(camelot.getEnergy() + hand.getEnergy());
+            camelot.setPower(camelot.getPower() - hand.getForce());
+            camelot.setMoney(camelot.getMoney() - hand.getPrice());
+
+            System.out.println(hand);
+            System.out.println("Вы подлечились");
+            System.out.println(camelot);
+
+
+        }
+        if (viborHospit == 3) {
+            System.out.println(neck);
+            camelot.setHealth(camelot.getHealth() + neck.getHospital());
+            camelot.setEnergy(camelot.getEnergy() + neck.getEnergy());
+            camelot.setPower(camelot.getPower() - neck.getForce());
+            camelot.setMoney(camelot.getMoney() - neck.getPrice());
+
+            System.out.println(neck);
+            System.out.println("Вы подлечились");
+            System.out.println(camelot);
+
+        }
+        if (viborHospit == 4) {
+            System.out.println(head);
+            camelot.setHealth(camelot.getHealth() + head.getHospital());
+            camelot.setEnergy(camelot.getEnergy() + head.getEnergy());
+            camelot.setPower(camelot.getPower() - head.getForce());
+            camelot.setMoney(camelot.getMoney() - head.getPrice());
+            System.out.println(head);
+            System.out.println("Вы подлечились");
+            System.out.println(camelot);
+        }
+
+    }
+
+    public void viborMonstr() {
+        int viborMonstr = consol.nextInt();
+        if (viborMonstr == 1) {
+            System.out.println(light);
+            fightEasyMonster();
+        }
+        if (viborMonstr == 2) {
+            System.out.println(middle);
+            fightmiddleMonster();
+        }
+        if (viborMonstr == 3) {
+            System.out.println(hard);
+            fighthardMonster();
+        }
+        if (viborMonstr == 4) {
+            System.out.println(boss);
+            fightBossMonster();
+        }
+    }
+
+
+    public void fightEasyMonster() {
+        camelot.setEnergy(camelot.getEnergy()- light.getMenergy());
+        if (camelot.getEnergy() > light.getMenergy()) {
+            System.out.println("Вы победили!");
+            camelot.setMoney(camelot.getMoney() + light.getPriz());
+            System.out.println(camelot);
+            System.out.println("Вы заработали " + light.getPriz());
+
+        } else {
+            System.out.println("Вы проиграли!");
+            System.out.println("Cила монстра против которого вы сражались была : " + light.getMenergy());
+            camelot.setHealth(camelot.getHealth() - light.getMenergy());
+            System.out.println(camelot);
+            System.out.println("Ваше здоровье уменьшилось до " + camelot.getHealth());
+        }
+
+    }
+
+    public void fightmiddleMonster() {
+        camelot.setEnergy(camelot.getEnergy() - middle.getMenergy());
+        if (camelot.getEnergy() > middle.getMenergy()) {
+            System.out.println("Вы победили!");
+            camelot.setMoney(camelot.getMoney() + middle.getPriz());
+            System.out.println(camelot);
+            System.out.println("Вы заработали " + middle.getPriz());
+
+        } else {
+            System.out.println("Вы проиграли!");
+            System.out.println("Cила монстра против которого вы сражались была : " + middle.getMenergy());
+            camelot.setHealth(camelot.getHealth() - middle.getMenergy());
+            System.out.println(camelot);
+            System.out.println("Ваше здоровье уменьшилось до " + camelot.getHealth());
+
+
+        }
+
+    }
+
+    public void fighthardMonster() {
+        camelot.setEnergy(camelot.getEnergy() - hard.getMenergy());
+        if (camelot.getEnergy() > hard.getMenergy()) {
+            System.out.println("Вы победили!");
+            camelot.setMoney(camelot.getMoney() + hard.getPriz());
+            System.out.println(camelot);
+            System.out.println("Вы заработали " + hard.getPriz());
+
+        } else {
+            System.out.println("Вы проиграли!");
+            System.out.println("Cила монстра против которого вы сражались была : " + hard.getMenergy());
+            camelot.setHealth(camelot.getHealth() - hard.getMenergy());
+            System.out.println(camelot);
+            System.out.println("Ваше здоровье уменьшилось до " + camelot.getHealth());
+
+
+        }
+
+    }
+
+    public void fightBossMonster() {
+        camelot.setEnergy(camelot.getEnergy() - boss.getMenergy());
+        if (camelot.getEnergy() > boss.getMenergy()) {
+            System.out.println("Вы победили!");
+            camelot.setMoney(camelot.getMoney() + boss.getPriz());
+            System.out.println(camelot);
+            System.out.println("Вы заработали " + boss.getPriz());
+
+        } else {
+            System.out.println("Вы проиграли!");
+            System.out.println("Cила монстра против которого вы сражались была : " + boss.getMenergy());
+            camelot.setHealth(camelot.getHealth() - boss.getMenergy());
+            System.out.println(camelot);
+            System.out.println("Ваше здоровье уменьшилось до " + camelot.getHealth());
+
 
         }
 
 
+    }
 }
 
 
