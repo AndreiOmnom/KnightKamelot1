@@ -21,8 +21,8 @@ public class Game {
     private Monstr boss = new Monstr("--Босс монстр", random.nextInt(41) / 10 + 1, 35);
 
     // поле лечение
-     Hospital leg = new Hospital();
-      Hospital hand = new Hospital(20, 30, -10, 10);
+     Hospital leg = new Hospital(10, 15, -10, 30);
+      Hospital hand = new Hospital(20, 20, -20, 30);
       Hospital neck = new Hospital(40, 40, -30, 20);
     Hospital head = new Hospital(60, 30, -40, 40);
 

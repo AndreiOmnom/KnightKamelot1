@@ -8,7 +8,7 @@ public class Hospital {
       private int price;
     private int hospital;
 
-    public void Hospital(int hospital, int energy, int force, int price) {
+    public Hospital(int hospital, int energy, int force, int price) {
 
         this.hospital = hospital;
         this.price = price;
