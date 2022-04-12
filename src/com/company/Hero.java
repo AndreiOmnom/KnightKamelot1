@@ -16,6 +16,9 @@ public class Hero {
         this.money = money;
 
     }
+    public Hero (){
+
+    }
     public int getHealth() {
         return health;
     }
