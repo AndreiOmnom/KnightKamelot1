@@ -11,21 +11,21 @@ public class Game {
     SecureRandom random = new SecureRandom();
 
     // поле рыцарь
-    public Hero camelot = new Hero(100, 100, 10, 50);
+    public Hero camelot = new Hero(100, 100, 50, 50);
 
 
     // поле монстр
 
-    public Monstr light = new Monstr("--Легкий монстр", random.nextInt(10) / 10 + 1, 5);
-    public Monstr middle = new Monstr("--Средний монстр", random.nextInt(20) / 10 + 2, 10);
-    public Monstr hard = new Monstr("--Тяжелый монстр", random.nextInt(30) / 10 + 1, 20);
-    public Monstr boss = new Monstr("--Босс монстр", random.nextInt(40) / 10 + 1, 35);
+    public Monstr light = new Monstr("--Легкий монстр", (int) random.nextInt(10) / 10 + 1, 5);
+    public Monstr middle = new Monstr("--Средний монстр", (int) random.nextInt(20) / 10 + 2, 10);
+    public Monstr hard = new Monstr("--Тяжелый монстр", (int)random.nextInt(30) / 10 + 1, 20);
+    public Monstr boss = new Monstr("--Босс монстр", (int)random.nextInt(40) / 10 + 1, 35);
 
     // поле лечение
-    public Hospital leg = new Hospital(10, 15, -10, 30);
-     public  Hospital hand = new Hospital(20, 20, -20, 30);
-     public Hospital neck = new Hospital(40, 40, -30, 20);
-    public Hospital head = new Hospital(60, 30, -40, 40);
+    public Hospital leg = new Hospital(10, 15, 5 , 30);
+     public  Hospital hand = new Hospital(20, 20, 10, 30);
+     public Hospital neck = new Hospital(40, 40, 15, 20);
+    public Hospital head = new Hospital(60, 30, 20, 40);
 
 
     public Game() {
@@ -100,7 +100,7 @@ public class Game {
         if (viborHospit == 1) {
             camelot.setHealth(camelot.getHealth() + leg.getHp());
             camelot.setEnergy(camelot.getEnergy() + leg.getEnergy());
- //           camelot.setPower(camelot.getPower() - leg.setForce());
+             camelot.setPower((int)camelot.getPower() - leg.getForce());
             camelot.setMoney(camelot.getMoney() - leg.getPrice());
 
             System.out.println(leg);
@@ -111,7 +111,7 @@ public class Game {
             System.out.println(hand);
             camelot.setHealth(camelot.getHealth() + hand.getHp());
             camelot.setEnergy(camelot.getEnergy() + hand.getEnergy());
-    //       camelot.getPower(camelot.getPower() - hand.setForce());
+            camelot.setPower((int)camelot.getPower() - hand.getForce());
             camelot.setMoney(camelot.getMoney() - hand.getPrice());
 
             System.out.println(hand);
@@ -124,7 +124,7 @@ public class Game {
             System.out.println(neck);
             camelot.setHealth(camelot.getHealth() + neck.getHp());
             camelot.setEnergy(camelot.getEnergy() + neck.getEnergy());
-     //      camelot.setPower(camelot.getPower() - neck.setForce());
+            camelot.setPower((int)camelot.getPower() - neck.getForce());
             camelot.setMoney(camelot.getMoney() - neck.getPrice());
 
             System.out.println(neck);
@@ -136,7 +136,7 @@ public class Game {
             System.out.println(head);
             camelot.setHealth(camelot.getHealth() + head.getHp());
             camelot.setEnergy(camelot.getEnergy() + head.getEnergy());
-     //       camelot.setPower(camelot.getPower() - head.setForce());
+            camelot.setPower((int) (camelot.getPower() - head.getForce()));
             camelot.setMoney(camelot.getMoney() - head.getPrice());
             System.out.println(head);
             System.out.println("Вы подлечились");
