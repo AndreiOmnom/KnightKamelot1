@@ -56,6 +56,7 @@ public class Hero {
                 + "\nСила:" + power
                 + " \nДеньги:" + money;
 
+
     }
 
 }

@@ -143,6 +143,7 @@ public class Game {
             System.out.println("Вы подлечились");
             System.out.println(camelot);
         }
+        menuGame();
 
     }
 
@@ -164,6 +165,7 @@ public class Game {
             System.out.println(boss);
             fightBossMonster();
         }
+        menuGame();
     }
 
 
@@ -244,7 +246,9 @@ public class Game {
         }
 
 
+
     }
+
 }
 
 

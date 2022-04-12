@@ -55,10 +55,11 @@ public class Hospital {
 
     @Override
     public String toString() {
-        return "Подлечит :" + hp +
-                "Заберет энергию --" + energy +
-                "Даст силу--" + force +
-                "Стоимость лечения--" + price;
+        return "Подлечит : Здоровья добавит +" + hp +
+                "\nЗаберет энергию -" + energy +
+                "\nДаст силу +" + force +
+                "\nСтоимость лечения: талеры -" + price;
+
     }
 
 }

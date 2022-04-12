@@ -4,7 +4,8 @@ import java.security.SecureRandom;
 import java.security.Security;
 import java.util.Scanner;
 
-public class Main {
+public class
+        Main {
 
     //Создадим в классе main обьект класса Game чтобы мы могли запустить игру
     static Game game = new Game();
