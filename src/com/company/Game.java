@@ -22,10 +22,10 @@ public class Game {
     public Monstr boss = new Monstr("--Босс монстр", (int)random.nextInt(40) / 10 + 1, 35);
 
     // поле лечение
-    public Hospital leg = new Hospital(10, 15, 5 , 30);
-     public  Hospital hand = new Hospital(20, 20, 10, 30);
-     public Hospital neck = new Hospital(40, 40, 15, 20);
-    public Hospital head = new Hospital(60, 30, 20, 40);
+    public static Hospital leg = new Hospital(10, 15, 5 , 30);
+     public static Hospital hand = new Hospital(20, 20, 10, 30);
+     public static Hospital neck = new Hospital(40, 40, 15, 20);
+    public static Hospital head = new Hospital(60, 30, 20, 40);
 
 
     public Game() {
@@ -36,6 +36,7 @@ public class Game {
             fightMonster();
 
         }
+
     }
 
     public void playGame() {
