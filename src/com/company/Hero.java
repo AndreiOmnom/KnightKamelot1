@@ -17,6 +17,10 @@ public class Hero {
 
     }
 
+    public Hero() {
+
+    }
+
     public int getHealth() {
         return health;
     }

@@ -45,8 +45,39 @@ public class Game {
     public void namehero() {
         System.out.println("Введите имя героя");
         String name = consol.nextLine();
-        System.out.println(name + "-привет");
+        System.out.println( name + "--за кого будете играть?:" +
+                "\n 1= Рыцарь " +
+                "\n 2= Маг  " +
+                "\n 3 = Просто пехота");
+        changehero();
+
     }
+
+    public void changehero () {
+
+        int changeh = consol.nextInt();
+//Mag mag=(Mag) hero;   //приведение объекта класса Гtрой к объкту класса Маг
+
+            if (changeh == 1) {
+                camelot = new Knight(50, 70, 15, 85, "Буцефал");
+                Knight knight= (Knight) camelot;
+
+
+            }
+            if (changeh  == 2) {
+                camelot = new Mag(80,100, 30, 100,"Горыныч");
+                Mag mag = (Mag) camelot;
+
+            }
+            if (changeh == 3) {
+                camelot = new Pehota(30, 100, 12, 5,"Дайте сдохнуть");
+                Pehota pehota = (Pehota) camelot;
+
+            }
+        }
+
+
+
 
     public void menuGame() {
         System.out.println("\nМеню:  " +
