@@ -1,5 +1,7 @@
 package com.company;
 
+import com.Shop;
+
 import java.security.SecureRandom;
 import java.util.Scanner;
 
@@ -11,7 +13,7 @@ public class Game {
     SecureRandom random = new SecureRandom();
 
     // поле рыцарь
-    public Hero camelot = new Hero(100, 100, 50, 50);
+   public Hero camelot = new Hero(100, 100, 50, 50);
 
 
     // поле монстр
@@ -26,6 +28,10 @@ public class Game {
      public static Hospital hand = new Hospital(20, 20, 10, 30);
      public static Hospital neck = new Hospital(40, 40, 15, 20);
     public static Hospital head = new Hospital(60, 30, 20, 40);
+    // поле магазин
+    public static Shop armor = new Shop (40, 15, -30 );
+    public static Shop sword= new Shop (20, 30, -20);
+    public static Shop knife = new Shop (5, 4, -2);
 
 
     public Game() {
@@ -49,29 +55,33 @@ public class Game {
                 "\n 1= Рыцарь " +
                 "\n 2= Маг  " +
                 "\n 3 = Просто пехота");
-        changehero();
+         changehero();
 
     }
 
-    public void changehero () {
 
-        int changeh = consol.nextInt();
-//Mag mag=(Mag) hero;   //приведение объекта класса Гtрой к объкту класса Маг
+    public void changehero(){
+    int changeh = consol.nextInt();
+
+////Mag mag=(Mag) hero;   //приведение объекта класса Hero к объeкту класса Mag
 
             if (changeh == 1) {
-                camelot = new Knight(50, 70, 15, 85, "Буцефал");
+                camelot = new Knight(50, 70, 15, 85,"Буцефал");
                 Knight knight= (Knight) camelot;
+                System.out.println("У Вас в помощниках : " + knight.horse );
 
 
             }
             if (changeh  == 2) {
-                camelot = new Mag(80,100, 30, 100,"Горыныч");
+                camelot = new Mag(80,100, 30, 100, "Горыныч");
                 Mag mag = (Mag) camelot;
+                 System.out.println("У Вас в помощниках : " + mag.dragon);
 
             }
             if (changeh == 3) {
-                camelot = new Pehota(30, 100, 12, 5,"Дайте сдохнуть");
+                camelot = new Pehota(30, 100, 12, 5, "Дайте умереть");
                 Pehota pehota = (Pehota) camelot;
+                System.out.println("У Вас в помощниках : " + pehota.pony);
 
             }
         }
@@ -114,15 +124,57 @@ public class Game {
     }
 
     public void shopping() {
-
+        System.out.println("Что будем покупать?"+
+                "\n 1 - Koльчугу:" + armor +
+                " \n 2 - Мечь кладенец:" + sword +
+                " \n 3 - Нож:" + knife);
+        shopprice();
     }
+    public void shopprice() {
+        int shopper = consol.nextInt();
 
+        if (shopper == 1) {
+            System.out.println(armor);
+            camelot.setEnergy(camelot.getEnergy() - armor.getEnergy());
+            camelot.setPower((int) camelot.getPower() + armor.getForce());
+            camelot.setMoney(camelot.getMoney() - armor.getPrice());
+
+            System.out.println(armor);
+            System.out.println("Вы купили кольчугу");
+            System.out.println(camelot);
+        }
+        if (shopper == 2) {
+            System.out.println(sword);
+            camelot.setEnergy(camelot.getEnergy() - sword.getEnergy());
+            camelot.setPower((int) camelot.getPower() + sword.getForce());
+            camelot.setMoney(camelot.getMoney() - sword.getPrice());
+
+            System.out.println(sword);
+            System.out.println("Вы купили Мечь Кладенец");
+            System.out.println(camelot);
+
+
+        }
+        if (shopper == 3) {
+            System.out.println(knife);
+            camelot.setEnergy(camelot.getEnergy() - knife.getEnergy());
+            camelot.setPower((int) camelot.getPower() + knife.getForce());
+            camelot.setMoney(camelot.getMoney() - knife.getPrice());
+
+            System.out.println(knife);
+            System.out.println("Вы купили ножик");
+            System.out.println(camelot);
+
+
+        }
+        menuGame();
+    }
     public void hospital() {
-        System.out.println("Что будем лечить" +
-                " \n 1 - Ногу " + leg +
-                "\n 2  - Руку " + hand +
-                "\n 3  - Спину " + neck +
-                "\n 4  - Голову" + head);
+        System.out.println("Что будем лечить:" +
+                " \n 1 - Ногу :" + leg +
+                "\n 2  - Руку :" + hand +
+                "\n 3  - Спину :" + neck +
+                "\n 4  - Голову:" + head);
         viborHospital();
 
     }
@@ -130,13 +182,14 @@ public class Game {
     public void viborHospital() {
         int viborHospit = consol.nextInt();
         if (viborHospit == 1) {
+            System.out.println(leg);
             camelot.setHealth(camelot.getHealth() + leg.getHp());
             camelot.setEnergy(camelot.getEnergy() + leg.getEnergy());
              camelot.setPower((int)camelot.getPower() - leg.getForce());
             camelot.setMoney(camelot.getMoney() - leg.getPrice());
 
             System.out.println(leg);
-            System.out.println("Вы подлечились");
+            System.out.println("Вы подлечили ногу:");
             System.out.println(camelot);
         }
         if (viborHospit == 2) {
@@ -147,7 +200,7 @@ public class Game {
             camelot.setMoney(camelot.getMoney() - hand.getPrice());
 
             System.out.println(hand);
-            System.out.println("Вы подлечились");
+            System.out.println("Вы подлечили руку:");
             System.out.println(camelot);
 
 
@@ -160,7 +213,7 @@ public class Game {
             camelot.setMoney(camelot.getMoney() - neck.getPrice());
 
             System.out.println(neck);
-            System.out.println("Вы подлечились");
+            System.out.println("Вы подлечили спину:" );
             System.out.println(camelot);
 
         }
@@ -171,7 +224,7 @@ public class Game {
             camelot.setPower((int) (camelot.getPower() - head.getForce()));
             camelot.setMoney(camelot.getMoney() - head.getPrice());
             System.out.println(head);
-            System.out.println("Вы подлечились");
+            System.out.println("Вы подлечили голову:");
             System.out.println(camelot);
         }
         menuGame();
@@ -196,6 +249,7 @@ public class Game {
             System.out.println(boss);
             fightBossMonster();
         }
+
         menuGame();
     }
 
@@ -215,7 +269,7 @@ public class Game {
             System.out.println(camelot);
             System.out.println("Ваше здоровье уменьшилось до " + camelot.getHealth());
         }
-
+        menuGame();
     }
 
     public void fightmiddleMonster() {
@@ -235,7 +289,7 @@ public class Game {
 
 
         }
-
+            menuGame();
     }
 
     public void fighthardMonster() {
@@ -255,7 +309,7 @@ public class Game {
 
 
         }
-
+            menuGame();
     }
 
     public void fightBossMonster() {
@@ -276,7 +330,7 @@ public class Game {
 
         }
 
-
+        menuGame();
 
     }
 
